@@ -125,3 +125,5 @@ function tocarVideo() {
     }
 }
 
+// Iniciar o jogo ao carregar a página
+window.onload = iniciarJogo;
