@@ -13,7 +13,7 @@ function iniciarJogo() {
     acertos = 0;
     letrasTentadas = [];
     proximaPalavra();
-    criarTeclado();
+    criarTeclado();  // Cria o teclado ao iniciar
 }
 
 function proximaPalavra() {
@@ -23,8 +23,9 @@ function proximaPalavra() {
     }
 
     palavraAtual = palavras.shift();
-    document.getElementById("dica").innerText = palavraAtual.dica;
+    letrasTentadas = []; // Reseta as letras tentadas para a nova palavra
     atualizarForca();
+    resetarTeclado(); // Limpa o estado do teclado
 }
 
 function criarTeclado() {
@@ -36,8 +37,15 @@ function criarTeclado() {
         const tecla = document.createElement("div");
         tecla.className = "tecla";
         tecla.innerText = letra.toUpperCase();
-        tecla.onclick = () => tentar(letra); // Corrigido para garantir que a letra seja passada
+        tecla.onclick = () => tentar(letra);
         teclado.appendChild(tecla);
+    });
+}
+
+function resetarTeclado() {
+    const teclas = document.getElementsByClassName("tecla");
+    Array.from(teclas).forEach(tecla => {
+        tecla.classList.remove("acertou", "errou"); // Remove as classes de acerto e erro
     });
 }
 
@@ -73,7 +81,6 @@ function tentar(letra) {
 
     // Verifica se todas as letras foram acertadas
     if (palavraAtual.palavra.split("").every(letra => letrasTentadas.includes(letra))) {
-        console.log("Todas as letras foram acertadas. Reproduzindo vídeo...");
         tocarVideo();
     }
 
@@ -82,19 +89,17 @@ function tentar(letra) {
 
 function tocarVideo() {
     const videos = [
-        "Video1.mp4", // Substitua pelo caminho do seu vídeo
-        "Video2.mp4", // Substitua pelo caminho do seu vídeo
-        "Video3.mp4", // Substitua pelo caminho do seu vídeo
-        "Video4.mp4"  // Substitua pelo caminho do seu vídeo
+        "video1.mp4", // Substitua pelo caminho do seu vídeo
+        "video2.mp4", // Substitua pelo caminho do seu vídeo
+        "video3.mp4", // Substitua pelo caminho do seu vídeo
+        "video4.mp4"  // Substitua pelo caminho do seu vídeo
     ];
 
     if (acertos < videos.length) {
         const videoElement = document.getElementById("video");
         const videoSource = document.getElementById("videoSource");
 
-        // Verifica se o vídeo existe antes de atribuir o caminho
         const videoCaminho = videos[acertos];
-        console.log("Tentando carregar o vídeo:", videoCaminho); // Log do caminho do vídeo
         videoSource.src = videoCaminho;
 
         videoElement.load();
