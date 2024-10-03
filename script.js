@@ -83,10 +83,10 @@ function tentar(letra) {
 
 function tocarVideo() {
     const videos = [
-        "Video1.mp4", // Substitua pelo caminho do seu vídeo
-        "Video2.mp4", // Substitua pelo caminho do seu vídeo
-        "Video3.mp4", // Substitua pelo caminho do seu vídeo
-        "Video4.mp4"  // Substitua pelo caminho do seu vídeo
+        "video1.mp4", // Substitua pelo caminho do seu vídeo
+        "video2.mp4", // Substitua pelo caminho do seu vídeo
+        "video3.mp4", // Substitua pelo caminho do seu vídeo
+        "video4.mp4"  // Substitua pelo caminho do seu vídeo
     ];
 
     if (acertos < videos.length) {
@@ -95,4 +95,27 @@ function tocarVideo() {
 
         videoSource.src = videos[acertos];
         videoElement.load();
-        document.getElementById("videoContainer").classList.remove("hidden
+        document.getElementById("videoContainer").classList.remove("hidden");
+
+        videoElement.onended = () => {
+            document.getElementById("videoContainer").classList.add("hidden");
+            acertos++; // Aumenta o contador de acertos para o próximo vídeo
+            proximaPalavra();
+        };
+
+        // Tentar entrar em tela cheia
+        videoElement.requestFullscreen().catch(err => {
+            console.error(`Erro ao tentar entrar em tela cheia: ${err.message}`);
+        });
+        
+        videoElement.play(); // Inicia a reprodução do vídeo
+    } else {
+        document.getElementById("resultado").innerText = "Espere pelo próximo jogo, eu te amo pra sempre ♡";
+    }
+}
+
+// Iniciar o jogo ao carregar a página
+window.onload = () => {
+    iniciarJogo();
+    document.getElementById("videoContainer").classList.add("hidden"); // Garantir que o vídeo não esteja visível
+};
