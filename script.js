@@ -18,7 +18,7 @@ function iniciarJogo() {
 
 function proximaPalavra() {
     if (palavras.length === 0) {
-        document.getElementById("resultado").innerText = "Espere pelo próximo jogo, eu te amo pra sempre ♡";
+        window.location.href = "final.html"; // Redireciona para a nova página
         return;
     }
 
@@ -89,10 +89,10 @@ function tentar(letra) {
 
 function tocarVideo() {
     const videos = [
-        "Video1.mp4", // Substitua pelo caminho do seu vídeo
-        "Video2.mp4", // Substitua pelo caminho do seu vídeo
-        "Video3.mp4", // Substitua pelo caminho do seu vídeo
-        "Video4.mp4"  // Substitua pelo caminho do seu vídeo
+        "video1.mp4", // Substitua pelo caminho do seu vídeo
+        "video2.mp4", // Substitua pelo caminho do seu vídeo
+        "video3.mp4", // Substitua pelo caminho do seu vídeo
+        "video4.mp4"  // Substitua pelo caminho do seu vídeo
     ];
 
     if (acertos < videos.length) {
