@@ -73,6 +73,7 @@ function tentar(letra) {
 
     // Verifica se todas as letras foram acertadas
     if (palavraAtual.palavra.split("").every(letra => letrasTentadas.includes(letra))) {
+        console.log("Todas as letras foram acertadas. Reproduzindo vídeo...");
         tocarVideo();
     }
 
@@ -93,6 +94,7 @@ function tocarVideo() {
 
         // Verifica se o vídeo existe antes de atribuir o caminho
         const videoCaminho = videos[acertos];
+        console.log("Tentando carregar o vídeo:", videoCaminho); // Log do caminho do vídeo
         videoSource.src = videoCaminho;
 
         videoElement.load();
