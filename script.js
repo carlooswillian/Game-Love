@@ -89,10 +89,10 @@ function tentar(letra) {
 
 function tocarVideo() {
     const videos = [
-        "video1.mp4", // Substitua pelo caminho do seu vídeo
-        "video2.mp4", // Substitua pelo caminho do seu vídeo
-        "video3.mp4", // Substitua pelo caminho do seu vídeo
-        "video4.mp4"  // Substitua pelo caminho do seu vídeo
+        "Video1.mp4", // Substitua pelo caminho do seu vídeo
+        "Video2.mp4", // Substitua pelo caminho do seu vídeo
+        "Video3.mp4", // Substitua pelo caminho do seu vídeo
+        "Video4.mp4"  // Substitua pelo caminho do seu vídeo
     ];
 
     if (acertos < videos.length) {
