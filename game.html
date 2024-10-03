@@ -1,0 +1,73 @@
+<div class="container">
+   <h1>Encontre a palavra:</h1>
+   <h2 id="wordToFind">Pão</h2>
+   <button id="scanBtn">Escanear</button>
+</div>
+
+<style>
+   .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #e0f7fa;
+   }
+   h1, h2 {
+      font-family: 'Poppins', sans-serif;
+      color: #0077b6;
+   }
+   h1 {
+      font-size: 2rem;
+   }
+   h2 {
+      font-size: 1.8rem;
+   }
+   button {
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      border-radius: 50px;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      cursor: pointer;
+   }
+</style>
+
+<script>
+   const words = ["Pão", "Vida", "Café", "Amor"];
+   const videos = ["Video1.mp4", "Video2.mp4", "Video3.mp4", "Video4.mp4"];
+   let currentWord = 0;
+
+   document.getElementById("scanBtn").addEventListener("click", () => {
+      openCameraAndScan();
+   });
+
+   function openCameraAndScan() {
+      // Aqui você pode usar o Tesseract.js para reconhecer texto a partir da câmera
+      // Se a palavra escaneada for igual à da lista, reproduzir o vídeo
+      const scannedWord = "Pão"; // Resultado da análise da câmera
+
+      if (scannedWord === words[currentWord]) {
+         playVideo(videos[currentWord]);
+      }
+   }
+
+   function playVideo(videoFile) {
+      const videoElement = document.createElement('video');
+      videoElement.src = videoFile;
+      videoElement.controls = true;
+      videoElement.autoplay = true;
+      document.body.innerHTML = '';
+      document.body.appendChild(videoElement);
+
+      videoElement.onended = () => {
+         currentWord++;
+         if (currentWord < words.length) {
+            document.getElementById("wordToFind").innerText = words[currentWord];
+         } else {
+            window.location.href = "end.html";
+         }
+      };
+   }
+</script>
