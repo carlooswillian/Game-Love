@@ -108,7 +108,12 @@ function tocarVideo() {
         videoElement.onended = () => {
             document.getElementById("videoContainer").classList.add("hidden");
             acertos++; // Aumenta o contador de acertos para o próximo vídeo
-            proximaPalavra();
+
+            if (acertos >= videos.length) {
+                window.location.href = "final.html"; // Redireciona para a nova página
+            } else {
+                proximaPalavra();
+            }
         };
 
         videoElement.play().catch(error => {
@@ -120,5 +125,3 @@ function tocarVideo() {
     }
 }
 
-// Iniciar o jogo ao carregar a página
-window.onload = iniciarJogo;
