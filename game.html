@@ -3,7 +3,11 @@
    <h2 id="wordToFind">Pão</h2>
    <button id="scanBtn">Escanear</button>
    <video id="videoElement" style="display: none;"></video> <!-- Elemento para a câmera -->
+   <canvas id="canvas" style="display:none;"></canvas> <!-- Usado para capturar o frame da câmera -->
 </div>
+
+<!-- Adicionar o Tesseract.js -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
 
 <style>
    .container {
@@ -46,6 +50,8 @@
 
    function openCameraAndScan() {
       const video = document.getElementById("videoElement");
+      const canvas = document.getElementById("canvas");
+      const context = canvas.getContext('2d');
 
       // Solicitar permissão para usar a câmera traseira
       navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
@@ -54,19 +60,29 @@
             video.play();
             video.style.display = "block";  // Exibir o vídeo da câmera para escanear
 
-            // Simular o processo de OCR (análise da câmera)
+            // Tirar uma captura de tela após 5 segundos para simular o reconhecimento de texto
             setTimeout(() => {
-               // Aqui seria a integração com Tesseract.js
-               const scannedWord = "Pão"; // Simulação: substitua isso pelo resultado real da OCR.
+               // Definir o tamanho do canvas de acordo com o vídeo
+               canvas.width = video.videoWidth;
+               canvas.height = video.videoHeight;
 
-               if (scannedWord === words[currentWord]) {
-                  playVideo(videos[currentWord]);
-               } else {
-                  alert("Palavra não reconhecida, tente novamente!");
-                  video.style.display = "none";
-                  stream.getTracks().forEach(track => track.stop());  // Parar a câmera
-               }
-            }, 5000); // Simulação de 5 segundos para o reconhecimento
+               // Capturar um frame do vídeo
+               context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+               // Usar Tesseract.js para reconhecer o texto do frame capturado
+               Tesseract.recognize(canvas, 'por', { logger: (m) => console.log(m) })
+                  .then(({ data: { text } }) => {
+                     console.log(text);  // Ver o texto detectado
+                     // Verificar se a palavra reconhecida é igual à palavra atual
+                     if (text.toLowerCase().includes(words[currentWord].toLowerCase())) {
+                        playVideo(videos[currentWord]);
+                     } else {
+                        alert("Palavra não reconhecida, tente novamente!");
+                        video.style.display = "none";
+                        stream.getTracks().forEach(track => track.stop());  // Parar a câmera
+                     }
+                  });
+            }, 5000);  // Captura o frame após 5 segundos
          })
          .catch((error) => {
             console.error("Erro ao acessar a câmera: ", error);
