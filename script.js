@@ -57,10 +57,11 @@ function tentar(letra) {
     if (letrasTentadas.includes(letra)) {
         return; // Já tentou essa letra
     }
-    
+
     letrasTentadas.push(letra);
 
-    const tecla = document.querySelector(`.tecla:contains(${letra.toUpperCase()})`);
+    const tecla = Array.from(document.getElementsByClassName("tecla")).find(tecla => tecla.innerText === letra.toUpperCase());
+    
     if (palavraAtual.palavra.includes(letra)) {
         tecla.classList.add("acertou");
     } else {
@@ -69,6 +70,7 @@ function tentar(letra) {
 
     atualizarForca();
 
+    // Verifica se todas as letras foram acertadas
     if (palavraAtual.palavra.split("").every(letra => letrasTentadas.includes(letra))) {
         tocarVideo();
     }
@@ -83,7 +85,7 @@ function tocarVideo() {
         "video3.mp4", // Substitua pelo caminho do seu vídeo
         "video4.mp4"  // Substitua pelo caminho do seu vídeo
     ];
-    
+
     const videoElement = document.getElementById("video");
     const videoSource = document.getElementById("videoSource");
 
