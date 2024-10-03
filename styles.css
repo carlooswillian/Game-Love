@@ -1,73 +1,51 @@
 body {
-    background-color: #e0f7fa;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
-    color: #006064;
+}
+
+.container {
     text-align: center;
+    background-color: #e6f7ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-#forca {
-    font-size: 2rem;
-    margin: 20px 0;
-}
-
-#dica {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+.hidden {
+    display: none;
 }
 
 #teclado {
-    display: grid;
-    grid-template-columns: repeat(13, 1fr);
-    gap: 5px;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .tecla {
-    background-color: #4db6e4;
+    display: inline-block;
+    margin: 5px;
     padding: 10px;
+    border: 1px solid #007bff;
     border-radius: 5px;
     cursor: pointer;
+    user-select: none;
     transition: background-color 0.3s;
 }
 
 .tecla:hover {
-    background-color: #80deea;
+    background-color: #cce5ff;
 }
 
-.acertou {
-    background-color: #4caf50; /* Verde */
+.tecla.acertou {
+    background-color: #28a745;
+    color: white;
 }
 
-.errou {
-    background-color: #f44336; /* Vermelho */
-}
-
-#videoContainer {
-    position: fixed; /* Fixa o container do vídeo */
-    top: 0;
-    left: 0;
-    width: 100vw; /* Largura total da tela */
-    height: 100vh; /* Altura total da tela */
-    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro com opacidade */
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    z-index: 999; /* Coloca acima de outros elementos */
-}
-
-#video {
-    width: 90vh; /* Largura proporcional à altura */
-    height: auto; /* Mantém a proporção do vídeo */
-    max-height: 90vh; /* Limita a altura para não sair da tela */
-    max-width: 100%; /* Limita a largura máxima para a tela */
+.tecla.errou {
+    background-color: #dc3545;
+    color: white;
 }
