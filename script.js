@@ -7,10 +7,13 @@ const palavras = [
 
 let palavraAtual;
 let acertos = 0;
+let letrasTentadas = [];
 
 function iniciarJogo() {
     acertos = 0;
+    letrasTentadas = [];
     proximaPalavra();
+    criarTeclado();
 }
 
 function proximaPalavra() {
@@ -21,26 +24,56 @@ function proximaPalavra() {
 
     palavraAtual = palavras.shift();
     document.getElementById("dica").innerText = palavraAtual.dica;
-    document.getElementById("forca").innerText = "_ ".repeat(palavraAtual.palavra.length);
+    atualizarForca();
 }
 
-function tentar() {
-    const letra = document.getElementById("letra").value.toLowerCase();
-    const palavra = palavraAtual.palavra.toLowerCase();
+function criarTeclado() {
+    const teclado = document.getElementById("teclado");
+    teclado.innerHTML = ""; // Limpa o teclado anterior
+
+    const letras = "abcdefghijklmnopqrstuvwxyz".split("");
+    letras.forEach(letra => {
+        const tecla = document.createElement("div");
+        tecla.className = "tecla";
+        tecla.innerText = letra.toUpperCase();
+        tecla.onclick = () => tentar(letra);
+        teclado.appendChild(tecla);
+    });
+}
+
+function atualizarForca() {
+    const forcaElement = document.getElementById("forca");
+    forcaElement.innerHTML = "";
+
+    palavraAtual.palavra.split("").forEach(letra => {
+        const letraElement = document.createElement("span");
+        letraElement.innerText = letrasTentadas.includes(letra) ? letra : "_";
+        forcaElement.appendChild(letraElement);
+    });
+}
+
+function tentar(letra) {
+    if (letrasTentadas.includes(letra)) {
+        return; // Já tentou essa letra
+    }
     
-    if (palavra.includes(letra)) {
-        acertos++;
-        if (acertos === palavra.length) {
-            tocarVideo(acertos);
-        } else {
-            document.getElementById("resultado").innerText = "Acertou! Continue!";
-            // Atualizar a forca na tela (para simplificação, não implementado aqui)
-        }
+    letrasTentadas.push(letra);
+
+    if (palavraAtual.palavra.includes(letra)) {
+        const tecla = document.querySelector(`.tecla:contains(${letra.toUpperCase()})`);
+        tecla.classList.add("acertou");
     } else {
-        document.getElementById("resultado").innerText = "Errou! Tente novamente!";
+        const tecla = document.querySelector(`.tecla:contains(${letra.toUpperCase()})`);
+        tecla.classList.add("errou");
     }
 
-    document.getElementById("letra").value = '';
+    atualizarForca();
+
+    if (palavraAtual.palavra.split("").every(letra => letrasTentadas.includes(letra))) {
+        tocarVideo();
+    }
+
+    document.getElementById("resultado").innerText = "";
 }
 
 function tocarVideo() {
@@ -54,12 +87,13 @@ function tocarVideo() {
     const videoElement = document.getElementById("video");
     const videoSource = document.getElementById("videoSource");
 
-    videoSource.src = videos[acertos - 1];
+    videoSource.src = videos[acertos];
     videoElement.load();
     document.getElementById("videoContainer").classList.remove("hidden");
     
     videoElement.onended = () => {
         document.getElementById("videoContainer").classList.add("hidden");
+        acertos++; // Aumenta o contador de acertos para o próximo vídeo
         proximaPalavra();
     };
 
