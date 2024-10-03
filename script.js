@@ -18,8 +18,8 @@ function iniciarJogo() {
 
 function proximaPalavra() {
     if (palavras.length === 0) {
-        document.getElementById("resultado").innerText = "Espere pelo próximo jogo, eu te amo pra sempre ♡";
-        return;
+        // Não precisa mais dessa linha, pois o redirecionamento foi movido para a função tocarVideo
+        return; 
     }
 
     palavraAtual = palavras.shift();
@@ -108,15 +108,18 @@ function tocarVideo() {
         videoElement.onended = () => {
             document.getElementById("videoContainer").classList.add("hidden");
             acertos++; // Aumenta o contador de acertos para o próximo vídeo
-            proximaPalavra();
+            if (acertos < videos.length) {
+                proximaPalavra();
+            } else {
+                // Redireciona para a página final ao término do último vídeo
+                window.location.href = "final.html";
+            }
         };
 
         videoElement.play().catch(error => {
             console.error("Erro ao tentar reproduzir o vídeo:", error);
             alert("Não foi possível reproduzir o vídeo. Verifique se o arquivo existe e está no formato correto.");
         });
-    } else {
-        alert("Todos os vídeos já foram reproduzidos.");
     }
 }
 
