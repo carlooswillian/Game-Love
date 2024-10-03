@@ -93,13 +93,18 @@ function tocarVideo() {
     videoSource.src = videos[acertos];
     videoElement.load();
     document.getElementById("videoContainer").classList.remove("hidden");
-    
+
     videoElement.onended = () => {
         document.getElementById("videoContainer").classList.add("hidden");
         acertos++; // Aumenta o contador de acertos para o próximo vídeo
         proximaPalavra();
     };
 
+    // Tentar entrar em tela cheia
+    videoElement.requestFullscreen().catch(err => {
+        console.error(`Erro ao tentar entrar em tela cheia: ${err.message}`);
+    });
+    
     videoElement.play();
 }
 
