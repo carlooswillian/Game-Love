@@ -2,6 +2,7 @@
    <h1>Encontre a palavra:</h1>
    <h2 id="wordToFind">Pão</h2>
    <button id="scanBtn">Escanear</button>
+   <video id="videoElement" style="display: none;"></video> <!-- Elemento para a câmera -->
 </div>
 
 <style>
@@ -44,13 +45,32 @@
    });
 
    function openCameraAndScan() {
-      // Aqui você pode usar o Tesseract.js para reconhecer texto a partir da câmera
-      // Se a palavra escaneada for igual à da lista, reproduzir o vídeo
-      const scannedWord = "Pão"; // Resultado da análise da câmera
+      const video = document.getElementById("videoElement");
+      
+      // Solicitar permissão para a câmera
+      navigator.mediaDevices.getUserMedia({ video: true })
+         .then((stream) => {
+            video.srcObject = stream;
+            video.play();
+            video.style.display = "block";  // Exibir o vídeo para escanear
 
-      if (scannedWord === words[currentWord]) {
-         playVideo(videos[currentWord]);
-      }
+            // Aqui você pode integrar com o Tesseract.js ou outro serviço de OCR
+            setTimeout(() => {
+               // Placeholder: Simulando reconhecimento da palavra "Pão"
+               const scannedWord = "Pão"; // No lugar disso, estará o resultado do reconhecimento OCR.
+
+               if (scannedWord === words[currentWord]) {
+                  playVideo(videos[currentWord]);
+               } else {
+                  alert("Palavra não reconhecida, tente novamente!");
+                  video.style.display = "none";
+                  stream.getTracks().forEach(track => track.stop());  // Parar a câmera
+               }
+            }, 5000); // Simulação de tempo de reconhecimento (5 segundos)
+         })
+         .catch((error) => {
+            console.error("Erro ao acessar a câmera: ", error);
+         });
    }
 
    function playVideo(videoFile) {
@@ -64,7 +84,7 @@
       videoElement.onended = () => {
          currentWord++;
          if (currentWord < words.length) {
-            document.getElementById("wordToFind").innerText = words[currentWord];
+            window.location.href = "game.html";
          } else {
             window.location.href = "end.html";
          }
