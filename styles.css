@@ -49,3 +49,54 @@ body {
     background-color: #dc3545;
     color: white;
 }
+ {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #e6f7ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+#teclado {
+    margin-top: 20px;
+}
+
+.tecla {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+.tecla:hover {
+    background-color: #cce5ff;
+}
+
+.tecla.acertou {
+    background-color: #28a745;
+    color: white;
+}
+
+.tecla.errou {
+    background-color: #dc3545;
+    color: white;
+}
