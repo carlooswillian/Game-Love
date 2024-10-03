@@ -46,18 +46,18 @@
 
    function openCameraAndScan() {
       const video = document.getElementById("videoElement");
-      
-      // Solicitar permissão para a câmera
-      navigator.mediaDevices.getUserMedia({ video: true })
+
+      // Solicitar permissão para usar a câmera traseira
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
          .then((stream) => {
             video.srcObject = stream;
             video.play();
-            video.style.display = "block";  // Exibir o vídeo para escanear
+            video.style.display = "block";  // Exibir o vídeo da câmera para escanear
 
-            // Aqui você pode integrar com o Tesseract.js ou outro serviço de OCR
+            // Simular o processo de OCR (análise da câmera)
             setTimeout(() => {
-               // Placeholder: Simulando reconhecimento da palavra "Pão"
-               const scannedWord = "Pão"; // No lugar disso, estará o resultado do reconhecimento OCR.
+               // Aqui seria a integração com Tesseract.js
+               const scannedWord = "Pão"; // Simulação: substitua isso pelo resultado real da OCR.
 
                if (scannedWord === words[currentWord]) {
                   playVideo(videos[currentWord]);
@@ -66,7 +66,7 @@
                   video.style.display = "none";
                   stream.getTracks().forEach(track => track.stop());  // Parar a câmera
                }
-            }, 5000); // Simulação de tempo de reconhecimento (5 segundos)
+            }, 5000); // Simulação de 5 segundos para o reconhecimento
          })
          .catch((error) => {
             console.error("Erro ao acessar a câmera: ", error);
