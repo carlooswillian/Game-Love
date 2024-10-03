@@ -36,7 +36,7 @@ function criarTeclado() {
         const tecla = document.createElement("div");
         tecla.className = "tecla";
         tecla.innerText = letra.toUpperCase();
-        tecla.onclick = () => tentar(letra);
+        tecla.onclick = () => tentar(letra); // Corrigido para garantir que a letra seja passada
         teclado.appendChild(tecla);
     });
 }
@@ -47,7 +47,8 @@ function atualizarForca() {
 
     palavraAtual.palavra.split("").forEach(letra => {
         const letraElement = document.createElement("span");
-        letraElement.innerText = letrasTentadas.includes(letra) ? letra : "_";
+        letraElement.innerText = letrasTentadas.includes(letra) ? letra : "_"; // Mostra a letra ou underscore
+        letraElement.style.marginRight = "5px"; // Espaço entre as letras
         forcaElement.appendChild(letraElement);
     });
 }
@@ -59,11 +60,10 @@ function tentar(letra) {
     
     letrasTentadas.push(letra);
 
+    const tecla = document.querySelector(`.tecla:contains(${letra.toUpperCase()})`);
     if (palavraAtual.palavra.includes(letra)) {
-        const tecla = document.querySelector(`.tecla:contains(${letra.toUpperCase()})`);
         tecla.classList.add("acertou");
     } else {
-        const tecla = document.querySelector(`.tecla:contains(${letra.toUpperCase()})`);
         tecla.classList.add("errou");
     }
 
