@@ -20,3 +20,32 @@ body {
 .hidden {
     display: none;
 }
+
+#teclado {
+    margin-top: 20px;
+}
+
+.tecla {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+.tecla:hover {
+    background-color: #cce5ff;
+}
+
+.tecla.acertou {
+    background-color: #28a745;
+    color: white;
+}
+
+.tecla.errou {
+    background-color: #dc3545;
+    color: white;
+}
