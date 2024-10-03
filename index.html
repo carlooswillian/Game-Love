@@ -1,0 +1,35 @@
+<div class="container">
+   <h1>Jogo do Amor</h1>
+   <button id="startBtn">Iniciar</button>
+</div>
+
+<style>
+   .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #e0f7fa;
+   }
+   h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      color: #0077b6;
+   }
+   button {
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      border-radius: 50px;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      cursor: pointer;
+   }
+</style>
+
+<script>
+   document.getElementById("startBtn").addEventListener("click", () => {
+      window.location.href = "game.html";
+   });
+</script>
