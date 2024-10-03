@@ -12,7 +12,6 @@ let letrasTentadas = [];
 function iniciarJogo() {
     acertos = 0;
     letrasTentadas = [];
-    document.getElementById("resultado").innerText = ""; // Limpa o resultado
     proximaPalavra();
     criarTeclado();
 }
@@ -20,7 +19,6 @@ function iniciarJogo() {
 function proximaPalavra() {
     if (palavras.length === 0) {
         document.getElementById("resultado").innerText = "Espere pelo próximo jogo, eu te amo pra sempre ♡";
-        document.getElementById("forca").innerHTML = ""; // Limpa a forca
         return;
     }
 
@@ -93,7 +91,10 @@ function tocarVideo() {
         const videoElement = document.getElementById("video");
         const videoSource = document.getElementById("videoSource");
 
-        videoSource.src = videos[acertos];
+        // Verifica se o vídeo existe antes de atribuir o caminho
+        const videoCaminho = videos[acertos];
+        videoSource.src = videoCaminho;
+
         videoElement.load();
         document.getElementById("videoContainer").classList.remove("hidden");
 
@@ -103,19 +104,14 @@ function tocarVideo() {
             proximaPalavra();
         };
 
-        // Tentar entrar em tela cheia
-        videoElement.requestFullscreen().catch(err => {
-            console.error(`Erro ao tentar entrar em tela cheia: ${err.message}`);
+        videoElement.play().catch(error => {
+            console.error("Erro ao tentar reproduzir o vídeo:", error);
+            alert("Não foi possível reproduzir o vídeo. Verifique se o arquivo existe e está no formato correto.");
         });
-        
-        videoElement.play(); // Inicia a reprodução do vídeo
     } else {
-        document.getElementById("resultado").innerText = "Espere pelo próximo jogo, eu te amo pra sempre ♡";
+        alert("Todos os vídeos já foram reproduzidos.");
     }
 }
 
 // Iniciar o jogo ao carregar a página
-window.onload = () => {
-    iniciarJogo();
-    document.getElementById("videoContainer").classList.add("hidden"); // Garantir que o vídeo não esteja visível
-};
+window.onload = iniciarJogo;
