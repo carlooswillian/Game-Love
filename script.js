@@ -18,7 +18,7 @@ function iniciarJogo() {
 
 function proximaPalavra() {
     if (palavras.length === 0) {
-        window.location.href = "final.html"; // Redireciona para a nova página
+        document.getElementById("resultado").innerText = "Espere pelo próximo jogo, eu te amo pra sempre ♡";
         return;
     }
 
