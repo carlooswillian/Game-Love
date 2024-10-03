@@ -60,6 +60,7 @@ function tentar(letra) {
 
     letrasTentadas.push(letra);
 
+    // Encontra a tecla correspondente e atualiza seu estado
     const tecla = Array.from(document.getElementsByClassName("tecla")).find(tecla => tecla.innerText === letra.toUpperCase());
     
     if (palavraAtual.palavra.includes(letra)) {
