@@ -1,8 +1,8 @@
 const palavras = [
-    { palavra: "AMOR", dica: "Sentimento forte." },
-    { palavra: "CASA", dica: "Lugar onde moramos." },
-    { palavra: "CACHORRO", dica: "Melhor amigo do homem." },
-    { palavra: "VIAGEM", dica: "Ir a outro lugar." }
+    { palavra: "amor", dica: "Sentimento forte." },
+    { palavra: "casa", dica: "Lugar onde moramos." },
+    { palavra: "cachorro", dica: "Melhor amigo do homem." },
+    { palavra: "viagem", dica: "Ir a outro lugar." }
 ];
 
 let palavraAtual;
@@ -12,6 +12,7 @@ let letrasTentadas = [];
 function iniciarJogo() {
     acertos = 0;
     letrasTentadas = [];
+    document.getElementById("resultado").innerText = ""; // Limpa o resultado
     proximaPalavra();
     criarTeclado();
 }
@@ -19,6 +20,7 @@ function iniciarJogo() {
 function proximaPalavra() {
     if (palavras.length === 0) {
         document.getElementById("resultado").innerText = "Espere pelo próximo jogo, eu te amo pra sempre ♡";
+        document.getElementById("forca").innerHTML = ""; // Limpa a forca
         return;
     }
 
@@ -81,31 +83,35 @@ function tentar(letra) {
 
 function tocarVideo() {
     const videos = [
-        "Video1.mp4", // Substitua pelo caminho do seu vídeo
-        "Video2.mp4", // Substitua pelo caminho do seu vídeo
-        "Video3.mp4", // Substitua pelo caminho do seu vídeo
-        "Video4.mp4"  // Substitua pelo caminho do seu vídeo
+        "video1.mp4", // Substitua pelo caminho do seu vídeo
+        "video2.mp4", // Substitua pelo caminho do seu vídeo
+        "video3.mp4", // Substitua pelo caminho do seu vídeo
+        "video4.mp4"  // Substitua pelo caminho do seu vídeo
     ];
 
-    const videoElement = document.getElementById("video");
-    const videoSource = document.getElementById("videoSource");
+    if (acertos < videos.length) {
+        const videoElement = document.getElementById("video");
+        const videoSource = document.getElementById("videoSource");
 
-    videoSource.src = videos[acertos];
-    videoElement.load();
-    document.getElementById("videoContainer").classList.remove("hidden");
+        videoSource.src = videos[acertos];
+        videoElement.load();
+        document.getElementById("videoContainer").classList.remove("hidden");
 
-    videoElement.onended = () => {
-        document.getElementById("videoContainer").classList.add("hidden");
-        acertos++; // Aumenta o contador de acertos para o próximo vídeo
-        proximaPalavra();
-    };
+        videoElement.onended = () => {
+            document.getElementById("videoContainer").classList.add("hidden");
+            acertos++; // Aumenta o contador de acertos para o próximo vídeo
+            proximaPalavra();
+        };
 
-    // Tentar entrar em tela cheia
-    videoElement.requestFullscreen().catch(err => {
-        console.error(`Erro ao tentar entrar em tela cheia: ${err.message}`);
-    });
-    
-    videoElement.play();
+        // Tentar entrar em tela cheia
+        videoElement.requestFullscreen().catch(err => {
+            console.error(`Erro ao tentar entrar em tela cheia: ${err.message}`);
+        });
+        
+        videoElement.play();
+    } else {
+        document.getElementById("resultado").innerText = "Espere pelo próximo jogo, eu te amo pra sempre ♡";
+    }
 }
 
 // Iniciar o jogo ao carregar a página
