@@ -23,7 +23,6 @@ function proximaPalavra() {
 
     palavraAtual = palavras.shift();
     letrasTentadas = [];
-    // Exibe a dica da nova palavra
     document.getElementById("dica").innerText = `Dica: ${palavraAtual.dica}`;
     atualizarForca();
     resetarTeclado();
