@@ -71,15 +71,17 @@ function atualizarForca() {
 }
 
 function tentar(letra) {
+    letra = letra.toUpperCase();  // Garante que a letra tentada esteja em maiúsculas
+
     if (letrasTentadas.includes(letra)) {
         return;
     }
 
     letrasTentadas.push(letra);
 
-    const tecla = Array.from(document.getElementsByClassName("tecla")).find(tecla => tecla.innerText === letra.toUpperCase());
+    const tecla = Array.from(document.getElementsByClassName("tecla")).find(tecla => tecla.innerText === letra);
 
-    if (palavraAtual.palavra.toLowerCase().includes(letra)) {
+    if (palavraAtual.palavra.includes(letra)) {
         tecla.classList.add("acertou");
     } else {
         tecla.classList.add("errou");
@@ -89,7 +91,7 @@ function tentar(letra) {
 
     atualizarForca();
 
-    if (palavraAtual.palavra.replace(/\s/g, "").split("").every(letra => letrasTentadas.includes(letra.toLowerCase()))) {
+    if (palavraAtual.palavra.replace(/\s/g, "").split("").every(letra => letrasTentadas.includes(letra.toUpperCase()))) {
         tocarVideo();
     }
 }
