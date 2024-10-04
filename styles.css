@@ -8,6 +8,11 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #e0f7fa;
+    color: #006064;
+}
+
+#jogo {
+    text-align: center;
 }
 
 #forca {
@@ -57,7 +62,7 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: black;
-    display: flex;
+    display: none;  /* Inicialmente oculto */
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -66,7 +71,7 @@ body {
 #video {
     width: 56.25vh; /* Proporção 9:16 */
     height: 100vh;
-    object-fit: cover; /* Preencher a tela mantendo a proporção */
+    object-fit: cover;
 }
 
 .hidden {
