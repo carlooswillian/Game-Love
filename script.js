@@ -60,7 +60,7 @@ function atualizarForca() {
 
     palavraAtual.palavra.split("").forEach(letra => {
         const letraElement = document.createElement("span");
-        letraElement.innerText = letrasTentadas.includes(letra) ? letra : "_";
+        letraElement.innerText = letrasTentadas.includes(letra) ? letra.toUpperCase() : "_"; // Transformar letra em maiúscula
         letraElement.style.marginRight = "5px";
         forcaElement.appendChild(letraElement);
     });
