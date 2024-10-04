@@ -2,7 +2,8 @@ const palavras = [
     { palavra: "BETO CARRERO WORLD", dica: "Foi um dia divertido e muito engraçado." },
     { palavra: "PORTILLO", dica: "Lugar mais frio que já fomos." },
     { palavra: "CONQUISTAS", dica: "Que Deus continue nos abençoando com muitas..." },
-    { palavra: "AMOR Y PASTA", dica: "Pedacinho da Itália." }
+    { palavra: "AMOR Y PASTA", dica: "Pedacinho da Itália." },
+    { palavra: "CASAMENTO", dica: "O que eu mais quero hoje." }
 ];
 
 let palavraAtual;
