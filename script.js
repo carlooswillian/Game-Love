@@ -114,7 +114,7 @@ function tocarVideo() {
             document.getElementById("videoContainer").classList.add("hidden");
             acertos++;
             if (acertos < videos.length) {
-                proximaPalavra();
+                proximaPalavra(); // Chama a próxima palavra após o vídeo
             } else {
                 window.location.href = "final.html";
             }
