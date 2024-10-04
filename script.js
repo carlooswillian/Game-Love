@@ -1,8 +1,8 @@
 const palavras = [
-    { palavra: "amor", dica: "Sentimento forte." },
-    { palavra: "casa", dica: "Lugar onde moramos." },
-    { palavra: "cachorro", dica: "Melhor amigo do homem." },
-    { palavra: "viagem", dica: "Ir a outro lugar." }
+    { palavra: "BETO CARRERO WORLD", dica: "Foi um dia divertido e muito engraçado." },
+    { palavra: "PORTILLO", dica: "Lugar mais frio que já fomos." },
+    { palavra: "CONQUISTAS", dica: "Que Deus continue nos abençoando com muitas..." },
+    { palavra: "AMOR Y PASTA", dica: "Pedacinho da Itália." }
 ];
 
 let palavraAtual;
