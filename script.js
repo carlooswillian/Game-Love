@@ -42,7 +42,7 @@ function criarTeclado() {
         const tecla = document.createElement("div");
         tecla.className = "tecla";
         tecla.innerText = letra.toUpperCase();
-        tecla.onclick = () => tentar(letra);
+        tecla.onclick = () => tentar(letra.toUpperCase());  // Converte para maiúsculas ao tentar
         teclado.appendChild(tecla);
     });
 }
@@ -63,7 +63,7 @@ function atualizarForca() {
         if (letra === " ") {
             letraElement.innerText = " ";  // Mantém os espaços
         } else {
-            letraElement.innerText = letrasTentadas.includes(letra.toLowerCase()) ? letra.toUpperCase() : "_";
+            letraElement.innerText = letrasTentadas.includes(letra.toUpperCase()) ? letra.toUpperCase() : "_";  // Compara em maiúsculas
         }
         letraElement.style.marginRight = "5px";
         forcaElement.appendChild(letraElement);
