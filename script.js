@@ -23,6 +23,7 @@ function proximaPalavra() {
 
     palavraAtual = palavras.shift();
     letrasTentadas = [];
+    document.getElementById("dica").innerText = `Dica: ${palavraAtual.dica}`;
     atualizarForca();
     resetarTeclado();
 }
@@ -86,9 +87,9 @@ function tentar(letra) {
 
 function tocarVideo() {
     const videos = [
-        "Video1.mp4", 
-        "Video2.mp4", 
-        "Video3.mp4", 
+        "Video1.mp4",
+        "Video2.mp4",
+        "Video3.mp4",
         "Video4.mp4"
     ];
 
