@@ -13,8 +13,8 @@ let contadorErros = 0; // Variável para contar os erros
 function iniciarJogo() {
     acertos = 0;
     letrasTentadas = [];
-    contadorErros = 0; // Reiniciar contador de erros no início do jogo
-    document.getElementById("contadorErros").innerText = "Erros: 0";
+    contadorErros = 0; // Reiniciar o contador de erros no início do jogo
+    document.getElementById("contadorErros").innerText = "Erros: 0"; // Exibir contador zerado
     proximaPalavra();
     criarTeclado();
 }
