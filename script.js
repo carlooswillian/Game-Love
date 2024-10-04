@@ -8,10 +8,13 @@ const palavras = [
 let palavraAtual;
 let acertos = 0;
 let letrasTentadas = [];
+let contadorErros = 0; // Variável para contar os erros
 
 function iniciarJogo() {
     acertos = 0;
     letrasTentadas = [];
+    contadorErros = 0; // Reiniciar contador de erros no início do jogo
+    document.getElementById("contadorErros").innerText = "Erros: 0";
     proximaPalavra();
     criarTeclado();
 }
@@ -74,6 +77,8 @@ function tentar(letra) {
         tecla.classList.add("acertou");
     } else {
         tecla.classList.add("errou");
+        contadorErros++; // Incrementar contador de erros
+        document.getElementById("contadorErros").innerText = `Erros: ${contadorErros}`; // Atualizar contador na tela
     }
 
     atualizarForca();
