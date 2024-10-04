@@ -1,51 +1,74 @@
+/* Estilos do layout do jogo */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    color: #333;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-color: #e0f7fa;
 }
 
-.container {
-    text-align: center;
-    background-color: #e6f7ff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+#forca {
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
-.hidden {
-    display: none;
+#dica {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
 }
 
 #teclado {
-    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 600px;
 }
 
 .tecla {
-    display: inline-block;
-    margin: 5px;
     padding: 10px;
-    border: 1px solid #007bff;
-    border-radius: 5px;
+    margin: 5px;
+    border: 1px solid #006064;
+    background-color: #e0f7fa;
     cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s;
-}
-
-.tecla:hover {
-    background-color: #cce5ff;
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+    border-radius: 5px;
 }
 
 .tecla.acertou {
-    background-color: #28a745;
+    background-color: green;
     color: white;
 }
 
 .tecla.errou {
-    background-color: #dc3545;
+    background-color: red;
     color: white;
+}
+
+/* Estilos do vídeo em tela cheia com proporção 9:16 */
+#videoContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#video {
+    width: 56.25vh; /* Proporção 9:16 */
+    height: 100vh;
+    object-fit: cover; /* Preencher a tela mantendo a proporção */
+}
+
+.hidden {
+    display: none;
 }
