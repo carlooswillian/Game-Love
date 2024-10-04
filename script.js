@@ -66,7 +66,7 @@ function atualizarForca() {
 
 function tentar(letra) {
     if (letrasTentadas.includes(letra)) {
-        return;
+        return; // Não faz nada se a letra já foi tentada
     }
 
     letrasTentadas.push(letra);
@@ -77,8 +77,8 @@ function tentar(letra) {
         tecla.classList.add("acertou");
     } else {
         tecla.classList.add("errou");
-        contadorErros++; // Incrementar contador de erros
-        document.getElementById("contadorErros").innerText = `Erros: ${contadorErros}`; // Atualizar contador na tela
+        contadorErros++; // Incrementar o contador de erros
+        document.getElementById("contadorErros").innerText = `Erros: ${contadorErros}`; // Atualizar na tela
     }
 
     atualizarForca();
