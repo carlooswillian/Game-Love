@@ -2,24 +2,26 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Forca</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Jogo da Forca</h1>
+    <div id="jogo">
+        <div id="dica"></div>
         <div id="forca"></div>
-        <p id="dica"></p>
         <div id="teclado"></div>
-        <p id="resultado"></p>
-        <div id="videoContainer" class="hidden">
-            <video id="video" controls>
-                <source id="videoSource" src="" type="video/mp4">
-                Seu navegador não suporta vídeo.
-            </video>
-        </div>
+        <div id="resultado"></div>
     </div>
+
+    <!-- Container do vídeo em tela cheia -->
+    <div id="videoContainer" class="hidden">
+        <video id="video" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Seu navegador não suporta a reprodução de vídeos.
+        </video>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
