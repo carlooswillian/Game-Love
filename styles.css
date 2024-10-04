@@ -61,6 +61,18 @@ h1 {
     color: white;
 }
 
+#contadorErros {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    color: #006064;
+}
+
+#fraseErro {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #004d40;
+}
+
 #videoContainer {
     position: fixed;
     top: 0;
