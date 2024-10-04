@@ -26,6 +26,8 @@ function proximaPalavra() {
 
     palavraAtual = palavras.shift();
     letrasTentadas = [];
+    contadorErros = 0; // Reiniciar o contador de erros a cada nova palavra
+    document.getElementById("contadorErros").innerText = "Erros: 0"; // Atualizar na tela com o contador zerado
     document.getElementById("dica").innerText = `Dica: ${palavraAtual.dica}`;
     atualizarForca();
     resetarTeclado();
