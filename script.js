@@ -29,7 +29,7 @@ function proximaPalavra() {
     document.getElementById("dica").innerText = `Dica: ${palavraAtual.dica}`;
     atualizarForca();
     resetarTeclado();
-    erros = 0;  // Reinicia o contador de erros
+    erros = 0;
     document.getElementById("contadorErros").innerText = "Erros: 0";
 }
 
@@ -37,12 +37,12 @@ function criarTeclado() {
     const teclado = document.getElementById("teclado");
     teclado.innerHTML = "";
 
-    const letras = "abcdefghijklmnopqrstuvwxyz".split("");
+    const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     letras.forEach(letra => {
         const tecla = document.createElement("div");
         tecla.className = "tecla";
-        tecla.innerText = letra.toUpperCase();
-        tecla.onclick = () => tentar(letra.toUpperCase());  // Converte para maiúsculas ao tentar
+        tecla.innerText = letra;
+        tecla.onclick = () => tentar(letra);  // Letra já em maiúsculas
         teclado.appendChild(tecla);
     });
 }
@@ -61,9 +61,9 @@ function atualizarForca() {
     palavraAtual.palavra.split("").forEach(letra => {
         const letraElement = document.createElement("span");
         if (letra === " ") {
-            letraElement.innerText = " ";  // Mantém os espaços
+            letraElement.innerText = " ";  // Mantém espaços
         } else {
-            letraElement.innerText = letrasTentadas.includes(letra.toUpperCase()) ? letra.toUpperCase() : "_";  // Compara em maiúsculas
+            letraElement.innerText = letrasTentadas.includes(letra.toUpperCase()) ? letra : "_";
         }
         letraElement.style.marginRight = "5px";
         forcaElement.appendChild(letraElement);
@@ -71,7 +71,7 @@ function atualizarForca() {
 }
 
 function tentar(letra) {
-    letra = letra.toUpperCase();  // Garante que a letra tentada esteja em maiúsculas
+    letra = letra.toUpperCase();
 
     if (letrasTentadas.includes(letra)) {
         return;
@@ -85,12 +85,13 @@ function tentar(letra) {
         tecla.classList.add("acertou");
     } else {
         tecla.classList.add("errou");
-        erros++;  // Incrementa o contador de erros
+        erros++;
         document.getElementById("contadorErros").innerText = `Erros: ${erros}`;
     }
 
     atualizarForca();
 
+    // Verifica se todas as letras foram acertadas, ignorando espaços
     if (palavraAtual.palavra.replace(/\s/g, "").split("").every(letra => letrasTentadas.includes(letra.toUpperCase()))) {
         tocarVideo();
     }
