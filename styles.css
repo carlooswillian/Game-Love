@@ -1,79 +1,85 @@
-/* Estilos do layout do jogo */
 body {
+    background-color: #e0f7fa;
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #e0f7fa;
+}
+
+#container {
+    text-align: center;
     color: #006064;
 }
 
-#jogo {
-    text-align: center;
+h1 {
+    font-size: 2rem;
+}
+
+#dica {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
 }
 
 #forca {
     font-size: 2rem;
+    letter-spacing: 10px;
     margin-bottom: 20px;
-}
-
-#dica {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
 }
 
 #teclado {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    max-width: 600px;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .tecla {
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #006064;
-    background-color: #e0f7fa;
-    cursor: pointer;
-    font-size: 1.5rem;
     width: 40px;
-    text-align: center;
-    border-radius: 5px;
+    height: 40px;
+    margin: 5px;
+    background-color: #b2ebf2;
+    color: #006064;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
 }
 
 .tecla.acertou {
-    background-color: green;
+    background-color: #81c784;
     color: white;
 }
 
 .tecla.errou {
-    background-color: red;
+    background-color: #e57373;
     color: white;
 }
 
-/* Estilos do vídeo em tela cheia com proporção 9:16 */
 #videoContainer {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    display: none;  /* Inicialmente oculto */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 9999;
+}
+
+#videoContainer.hidden {
+    display: none;
 }
 
 #video {
-    width: 56.25vh; /* Proporção 9:16 */
-    height: 100vh;
-    object-fit: cover;
-}
-
-.hidden {
-    display: none;
+    width: 80%;
+    height: auto;
+    max-height: 100%;
 }
